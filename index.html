@@ -913,141 +913,195 @@ function removeVinPhoto() {
 function getVal(id) { const el=document.getElementById(id); return el ? el.value.trim() : ''; }
 
 function buildEmailBody() {
-  const L = [];
-  const DIV = '════════════════════════════════════════';
-  const div = '────────────────────────────────────────';
+  // Build structured plain text that stays readable even when Gmail collapses whitespace.
+  // Each section uses ALL-CAPS headers and bullet lines so content is scannable without formatting.
+  const lines = [];
 
-  function row(label, value) { if (!value || value==='—') return; L.push('  '+label.padEnd(24)+value); }
-  function heading(text) { L.push(''); L.push('▌ '+text.toUpperCase()); L.push('  '+div); }
+  function sec(title) {
+    lines.push('');
+    lines.push('── ' + title.toUpperCase() + ' ──────────────────────────');
+  }
+  function row(label, value) {
+    if (!value || value === '—') return;
+    lines.push(label + ': ' + value);
+  }
+  function item(text) { lines.push('  • ' + text); }
+  function flag(text) { lines.push('  *** ' + text + ' ***'); }
 
   function getSibData(checkRow) {
-    let timeVal='', noteVal='';
+    let timeVal = '', noteVal = '';
     let sib = checkRow.nextElementSibling;
     if (sib && sib.classList.contains('time-drop-wrap') && sib.classList.contains('show')) {
-      const sel=sib.querySelector('select'); if(sel&&sel.value) timeVal=sel.value; sib=sib.nextElementSibling;
+      const sel = sib.querySelector('select'); if (sel && sel.value) timeVal = sel.value;
+      sib = sib.nextElementSibling;
     }
     if (sib && sib.classList.contains('note-wrap') && sib.classList.contains('show')) {
-      const inp=sib.querySelector('input'); if(inp&&inp.value.trim()) noteVal=inp.value.trim();
+      // grab all inputs and selects inside the note-wrap
+      const inputs = sib.querySelectorAll('input, select');
+      const parts = [];
+      inputs.forEach(el => { if (el.value && el.value.trim()) parts.push(el.value.trim()); });
+      noteVal = parts.join(' | ');
     }
-    return {timeVal, noteVal};
+    return { timeVal, noteVal };
   }
 
-  const ROUTINE = new Set(['ok','good','working','centered','present / ok','all good','clean','confirmed','done','even','clear','enabled','complete','already wt','already led','already led/hid','factory hid','none','n/a','no tint','stock','unknown','regular key','fob only','yes','no','tbd','hardwire','front only','usb only','halogen','standard','not tinted','normal wear & tear','normal wear &amp; tear']);
-  function isRoutine(btn) { return (btn.classList.contains('ok')||btn.classList.contains('na')) && ROUTINE.has(btn.textContent.trim().toLowerCase()); }
+  const ROUTINE = new Set([
+    'ok','good','working','centered','present / ok','all good','clean','confirmed','done',
+    'even','clear','enabled','complete','already led','factory led/hid','factory hid',
+    'none','n/a','no tint','stock','unknown','regular key','fob only','yes','no','tbd',
+    'hardwire','front only','usb only','halogen','standard','not tinted',
+    'normal wear & tear','normal wear &amp; tear','not equipped','factory non-serviceable'
+  ]);
+  function isRoutine(btn) {
+    return (btn.classList.contains('ok') || btn.classList.contains('na')) &&
+           ROUTINE.has(btn.textContent.trim().toLowerCase());
+  }
 
-  function scanRows(container, prefix) {
-    const out=[];
-    container.querySelectorAll('.check-row').forEach(cr=>{
-      const labelEl=cr.querySelector('.check-label'); const selBtn=cr.querySelector('.cbtn.on');
-      if(!labelEl||!selBtn) return;
-      const labelTxt=labelEl.childNodes[0].textContent.trim();
-      const {timeVal,noteVal}=getSibData(cr);
-      const flagged=selBtn.classList.contains('bad')||selBtn.classList.contains('upg')||noteVal||timeVal;
-      if(!flagged||isRoutine(selBtn)) return;
-      let line=prefix+labelTxt+': '+selBtn.textContent.trim();
-      if(timeVal) line+='  [Est. swap: '+timeVal+']';
-      if(noteVal) line+='\n'+' '.repeat(prefix.length+2)+'↳ '+noteVal;
-      out.push(line);
+  function scanRows(container) {
+    const out = [];
+    container.querySelectorAll('.check-row').forEach(cr => {
+      const labelEl = cr.querySelector('.check-label');
+      const selBtn  = cr.querySelector('.cbtn.on');
+      if (!labelEl || !selBtn) return;
+      const labelTxt = labelEl.childNodes[0].textContent.trim();
+      const { timeVal, noteVal } = getSibData(cr);
+      const isBad = selBtn.classList.contains('bad');
+      const isUpg = selBtn.classList.contains('upg');
+      const hasMeta = noteVal || timeVal;
+      if ((!isBad && !isUpg && !hasMeta) || isRoutine(selBtn)) return;
+      let txt = labelTxt + ': ' + selBtn.textContent.trim();
+      if (timeVal) txt += ' [Est. swap: ' + timeVal + ']';
+      if (noteVal) txt += ' — ' + noteVal;
+      out.push({ txt, isBad, isUpg });
     });
     return out;
   }
 
-  L.push(DIV); L.push('  THE AUDIO GARAGE — CHECK-IN REPORT'); L.push(DIV);
+  // ── HEADER ──
+  lines.push('THE AUDIO GARAGE — VEHICLE CHECK-IN');
+  lines.push('Sent from the AG Check-In Form');
 
-  const techs=[...document.querySelectorAll('#techChips .chip.on')].map(c=>c.textContent.trim()).join(', ')||'—';
-  const jobs=[...document.querySelectorAll('.job-chip.on')].map(c=>c.textContent.trim()).join(', ')||'—';
-  const dateRaw=getVal('jdate');
-  let dateFmt=dateRaw;
-  if(dateRaw){ const[y,m,d]=dateRaw.split('-'); dateFmt=m+'/'+d+'/'+y; }
+  // ── JOB INFO ──
+  const techs = [...document.querySelectorAll('#techChips .chip.on')].map(c => c.textContent.trim()).join(', ') || '—';
+  const jobs  = [...document.querySelectorAll('.job-chip.on')].map(c => c.textContent.trim()).join(', ') || '—';
+  const dateRaw = getVal('jdate');
+  let dateFmt = dateRaw;
+  if (dateRaw) { const [y,m,d] = dateRaw.split('-'); dateFmt = m+'/'+d+'/'+y; }
 
-  heading('Job Info');
-  row('Date:', dateFmt+'  '+(getVal('jtime')||''));
-  row('Technician(s):', techs);
-  row('Job Type(s):', jobs);
+  sec('JOB INFO');
+  row('Date', dateFmt + '  ' + (getVal('jtime') || ''));
+  row('Technician(s)', techs);
+  row('Job Type(s)', jobs);
 
-  heading('Customer');
-  row('Name:', getVal('custName')||'—');
-  row('Phone:', getVal('custPhone')||'—');
+  // ── CUSTOMER ──
+  sec('CUSTOMER');
+  row('Name', getVal('custName') || '—');
+  row('Phone', getVal('custPhone') || '—');
 
-  const fuel=document.querySelector('#fuelBar .fuel-btn.on');
-  heading('Vehicle');
-  row('Year / Make / Model:', [getVal('vYear'),getVal('vMake'),getVal('vModel')].filter(Boolean).join(' ')||'—');
-  row('Color:', getVal('vColor')||'—');
-  row('License Plate:', (getVal('vPlate')||'—')+'  '+(document.getElementById('vState').value||''));
-  row('VIN:', getVal('vVIN')||'(photo — see form)');
-  row('Mileage In:', getVal('mileIn')||'—');
-  row('Fuel Level:', fuel?fuel.textContent.trim():'—');
+  // ── VEHICLE ──
+  const fuel = document.querySelector('#fuelBar .fuel-btn.on');
+  sec('VEHICLE');
+  row('Year / Make / Model', [getVal('vYear'), getVal('vMake'), getVal('vModel')].filter(Boolean).join(' ') || '—');
+  row('Color', getVal('vColor') || '—');
+  row('License Plate', (getVal('vPlate') || '—') + '  ' + (document.getElementById('vState').value || ''));
+  row('VIN', getVal('vVIN') || '(photo — see form)');
+  row('Mileage In', getVal('mileIn') || '—');
+  row('Fuel Level', fuel ? fuel.textContent.trim() : '—');
 
-  // Battery
-  const ccaR=document.getElementById('ccaRated').value;
-  const ccaT=document.getElementById('ccaTested').value;
-  const charge=getVal('battCharge');
-  const crank=getVal('crankV');
-  const battDate=getVal('battDate');
-  heading('Battery Test');
-  if(ccaR) row('Rated CCA:', ccaR);
-  if(ccaT) { 
-    const flagged = ccaR && parseInt(ccaT) <= parseInt(ccaR)*0.75;
-    row('Tested CCA:', ccaT + (flagged?' ⚠ BELOW 75% — REPLACEMENT RECOMMENDED':''));
+  // ── BATTERY TEST ──
+  const ccaR   = document.getElementById('ccaRated').value;
+  const ccaT   = document.getElementById('ccaTested').value;
+  const charge = getVal('battCharge');
+  const crank  = getVal('crankV');
+  const battDate = getVal('battDate');
+  sec('BATTERY TEST');
+  if (ccaR) row('Rated CCA', ccaR);
+  if (ccaT) {
+    const ccaFlagged = ccaR && parseInt(ccaT) <= parseInt(ccaR) * 0.75;
+    row('Tested CCA', ccaT + (ccaFlagged ? '  *** BELOW 75% — REPLACEMENT RECOMMENDED ***' : ''));
   }
-  if(charge) row('Charge Level:', charge+'%'+(parseFloat(charge)<75?' ⚠ BELOW 75% — CHARGE BEFORE INSTALL':''));
-  if(crank) row('Cranking Voltage:', crank+'V'+(parseFloat(crank)<10?' ⚠ BELOW 10V — BATTERY FAILING':''));
-  if(battDate) row('Battery Date Code:', battDate);
+  if (charge) {
+    row('Charge Level', charge + '%' + (parseFloat(charge) < 75 ? '  *** BELOW 75% — CHARGE BEFORE INSTALL ***' : ''));
+  }
+  if (crank) {
+    row('Cranking Voltage', crank + 'V' + (parseFloat(crank) < 10 ? '  *** BELOW 10V — BATTERY FAILING ***' : ''));
+  }
+  if (battDate) row('Battery Date Code', battDate);
 
-  // Upgrades
-  const upgLines=[];
-  document.querySelectorAll('.check-row').forEach(cr=>{
-    const labelEl=cr.querySelector('.check-label'); const selBtn=cr.querySelector('.cbtn.on');
-    if(!labelEl||!selBtn||!selBtn.classList.contains('upg')) return;
-    const labelTxt=labelEl.childNodes[0].textContent.trim();
-    const {timeVal,noteVal}=getSibData(cr);
-    let line='  ★ '+labelTxt+': '+selBtn.textContent.trim();
-    if(timeVal) line+='  [Est. swap: '+timeVal+']';
-    if(noteVal) line+='\n      ↳ '+noteVal;
-    upgLines.push(line);
+  // ── UPGRADE OPPORTUNITIES ──
+  const upgItems = [];
+  document.querySelectorAll('.check-row').forEach(cr => {
+    const labelEl = cr.querySelector('.check-label');
+    const selBtn  = cr.querySelector('.cbtn.on');
+    if (!labelEl || !selBtn || !selBtn.classList.contains('upg')) return;
+    const labelTxt = labelEl.childNodes[0].textContent.trim();
+    const { timeVal, noteVal } = getSibData(cr);
+    let txt = labelTxt + ': ' + selBtn.textContent.trim();
+    if (timeVal) txt += ' [Est. swap: ' + timeVal + ']';
+    if (noteVal) txt += ' — ' + noteVal;
+    upgItems.push(txt);
   });
-  heading('Upgrade Opportunities');
-  if(upgLines.length) upgLines.forEach(l=>L.push(l)); else L.push('  None flagged.');
+  sec('UPGRADE OPPORTUNITIES');
+  if (upgItems.length) upgItems.forEach(u => item(u));
+  else lines.push('  None flagged.');
 
-  // Issues
-  const issueLines=[];
-  document.querySelectorAll('.main > .card').forEach(card=>{
-    const head=card.querySelector('.card-head');
-    if(head&&head.textContent.includes('Upgrade')) return;
-    const lines=scanRows(card,'  ⚠ ');
-    if(lines.length){ const ct=head?head.textContent.trim():''; if(ct) issueLines.push('  [ '+ct+' ]'); lines.forEach(l=>issueLines.push(l)); }
+  // ── ISSUES & FLAGS ──
+  const issueGroups = [];
+  document.querySelectorAll('.main > .card').forEach(card => {
+    const head = card.querySelector('.card-head');
+    if (head && head.textContent.includes('Upgrade')) return;
+    const rows = scanRows(card);
+    if (rows.length) {
+      const title = head ? head.textContent.trim() : 'General';
+      issueGroups.push({ title, rows });
+    }
   });
-  document.querySelectorAll('.job-sec.show').forEach(sec=>{
-    const sh=sec.querySelector('.sec-head'); const st=sh?sh.textContent.trim():'Job';
-    const lines=scanRows(sec,'  ⚠ ');
-    if(lines.length){ issueLines.push(''); issueLines.push('  [ '+st+' ]'); lines.forEach(l=>issueLines.push(l)); }
+  document.querySelectorAll('.job-sec.show').forEach(sec_el => {
+    const sh = sec_el.querySelector('.sec-head');
+    const title = sh ? sh.textContent.trim() : 'Job';
+    const rows = scanRows(sec_el);
+    if (rows.length) issueGroups.push({ title, rows });
   });
-  heading('Issues & Flags');
-  if(issueLines.length) issueLines.forEach(l=>L.push(l)); else L.push('  No issues noted.');
 
-  const signName=[...document.querySelectorAll('#salesChips .sale-chip.on')].map(c=>c.textContent.trim()).join(', ')||'—';
-  L.push(''); L.push(DIV);
-  L.push('  CHECK-IN SUBMITTED BY:  '+signName);
-  L.push(DIV);
-  L.push('  Sent from The Audio Garage Check-In Form');
-  L.push(DIV);
-  return L.join('\n');
+  sec('ISSUES & FLAGS');
+  if (issueGroups.length) {
+    issueGroups.forEach(group => {
+      lines.push('');
+      lines.push('[ ' + group.title.toUpperCase() + ' ]');
+      group.rows.forEach(r => {
+        if (r.isBad) flag(r.txt);
+        else item(r.txt);
+      });
+    });
+  } else {
+    lines.push('  No issues noted.');
+  }
+
+  // ── FOOTER ──
+  const signName = [...document.querySelectorAll('#salesChips .sale-chip.on')].map(c => c.textContent.trim()).join(', ') || '—';
+  lines.push('');
+  lines.push('────────────────────────────────────');
+  lines.push('SUBMITTED BY: ' + signName);
+  lines.push('The Audio Garage Check-In Form');
+  lines.push('────────────────────────────────────');
+
+  return lines.join('\n');
 }
 
 // ── Submit check-in ──
 function submitCheckin() {
   if (!saleEmail) { alert('Please select who to send the check-in to.'); return; }
-  const saleName=[...document.querySelectorAll('#salesChips .sale-chip.on')].map(c=>c.textContent.trim()).join(', ');
-  const wo=getVal('wo'); const cust=getVal('custName');
-  const vehicle=[getVal('vYear'),getVal('vMake'),getVal('vModel')].filter(Boolean).join(' ');
-  const subject=encodeURIComponent('Check-In: '+(cust||'Customer')+' — '+(vehicle||'Vehicle')+(wo?' (#'+wo+')':''));
-  const body=encodeURIComponent(buildEmailBody());
-  window.location.href='mailto:'+saleEmail+'?subject='+subject+'&body='+body;
+  const saleName = [...document.querySelectorAll('#salesChips .sale-chip.on')].map(c => c.textContent.trim()).join(', ');
+  const cust = getVal('custName');
+  const vehicle = [getVal('vYear'), getVal('vMake'), getVal('vModel')].filter(Boolean).join(' ');
+  const subject = encodeURIComponent('Check-In: ' + (cust || 'Customer') + ' — ' + (vehicle || 'Vehicle'));
+  const body = encodeURIComponent(buildEmailBody());
+  window.location.href = 'mailto:' + saleEmail + '?subject=' + subject + '&body=' + body;
   document.getElementById('emailHint').classList.add('show');
-  const btn=document.getElementById('submitBtn');
-  btn.textContent='✔ Email Prepared — See Instructions Below';
-  btn.style.background='#888';
-  btn.onclick=null;
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '✔ Email Prepared — See Instructions Below';
+  btn.style.background = '#888';
+  btn.onclick = null;
 }
 
 function unlockCheckout() {
