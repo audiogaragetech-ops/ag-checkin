@@ -41,12 +41,12 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
 .fuel-btn:hover{border-color:var(--red);color:var(--gray-900);}
 .fuel-btn.on{background:var(--red);border-color:var(--red);color:#fff;}
 .slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-500);margin-bottom:8px;}
-.chip-row{display:flex;gap:8px;flex-wrap:wrap;}
-.chip{padding:10px 16px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:100px;font-family:inherit;font-size:14px;font-weight:500;color:var(--gray-700);cursor:pointer;transition:all .12s;min-height:44px;display:flex;align-items:center;}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;width:100%;}
+.chip{padding:10px 16px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:100px;font-family:inherit;font-size:14px;font-weight:500;color:var(--gray-700);cursor:pointer;transition:all .12s;min-height:44px;display:inline-flex;align-items:center;-webkit-appearance:none;appearance:none;white-space:nowrap;}
 .chip:hover{border-color:var(--red);}
 .chip.on{background:var(--red);border-color:var(--red);color:#fff;}
 .job-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.job-chip{padding:12px 16px;background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:inherit;font-size:14px;font-weight:600;color:var(--gray-700);cursor:pointer;transition:all .12s;min-height:50px;display:flex;align-items:center;gap:8px;}
+.job-chip{padding:12px 16px;background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:inherit;font-size:14px;font-weight:600;color:var(--gray-700);cursor:pointer;transition:all .12s;min-height:50px;display:flex;align-items:center;gap:8px;-webkit-appearance:none;appearance:none;text-align:left;}
 .job-chip:hover{border-color:var(--red);color:var(--red);background:var(--red-lt);}
 .job-chip.on{background:var(--red-lt);border-color:var(--red);color:var(--red);}
 .phase-tabs{display:grid;grid-template-columns:1fr 1fr;background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;margin-bottom:18px;}
@@ -145,10 +145,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
   </div>
   <div class="slabel">Technicians on Job (select all that apply)</div>
   <div class="chip-row" id="techChips">
-    <div class="chip" onclick="togChip(this)">Kyle Watson</div>
-    <div class="chip" onclick="togChip(this)">Dylan Sundin</div>
-    <div class="chip" onclick="togChip(this)">Jeff Wallace</div>
-    <div class="chip" onclick="togChip(this)">Nick Paulson</div>
+    <button class="chip" onclick="togChip(this)">Kyle Watson</button>
+    <button class="chip" onclick="togChip(this)">Dylan Sundin</button>
+    <button class="chip" onclick="togChip(this)">Jeff Wallace</button>
+    <button class="chip" onclick="togChip(this)">Nick Paulson</button>
   </div>
 </div>
 
@@ -231,17 +231,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
 <!-- JOB TYPE -->
 <div class="sec-head">Job Type (select all that apply)</div>
 <div class="job-chips" id="jobChips">
-  <div class="job-chip" onclick="togJob(this,'audio')">🔊 Car Audio</div>
-  <div class="job-chip" onclick="togJob(this,'tint')">🪟 Window Tint</div>
-  <div class="job-chip" onclick="togJob(this,'remote')">📡 Remote Start</div>
-  <div class="job-chip" onclick="togJob(this,'camera')">📷 Backup Camera</div>
-  <div class="job-chip" onclick="togJob(this,'dashcam')">🎥 Dash Camera</div>
-  <div class="job-chip" onclick="togJob(this,'lighting')">💡 Lighting</div>
-  <div class="job-chip" onclick="togJob(this,'lift')">🚗 Lift Kit</div>
-  <div class="job-chip" onclick="togJob(this,'wheels')">⚙️ Wheels / Tires</div>
-  <div class="job-chip" onclick="togJob(this,'ppf')">🛡️ Paint Protection</div>
-  <div class="job-chip" onclick="togJob(this,'fleet')">🚐 Fleet</div>
-  <div class="job-chip" onclick="togJob(this,'acc')">✦ Accessories</div>
+  <button class="job-chip" onclick="togJob(this,'audio')">🔊 Car Audio</button>
+  <button class="job-chip" onclick="togJob(this,'headunit')">📻 Headunit</button>
+  <button class="job-chip" onclick="togJob(this,'tint')">🪟 Window Tint</button>
+  <button class="job-chip" onclick="togJob(this,'remote')">📡 Remote Start</button>
+  <button class="job-chip" onclick="togJob(this,'camera')">📷 Backup Camera</button>
+  <button class="job-chip" onclick="togJob(this,'dashcam')">🎥 Dash Camera</button>
+  <button class="job-chip" onclick="togJob(this,'lighting')">💡 Lighting</button>
+  <button class="job-chip" onclick="togJob(this,'lift')">🚗 Lift Kit</button>
+  <button class="job-chip" onclick="togJob(this,'wheels')">⚙️ Wheels / Tires</button>
+  <button class="job-chip" onclick="togJob(this,'ppf')">🛡️ Paint Protection</button>
+  <button class="job-chip" onclick="togJob(this,'fleet')">🚐 Fleet</button>
+  <button class="job-chip" onclick="togJob(this,'acc')">✦ Accessories</button>
 </div>
 
 <!-- PHASE TABS -->
@@ -374,6 +375,37 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
       <div class="note-wrap" id="co-spk-note"><input type="text" placeholder="Describe issue..."></div>
       <div class="check-row"><div class="check-label">SWC Programmed &amp; Working</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
       <div class="check-row"><div class="check-label">Fade, Balance &amp; Tuning Set</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Done</button><button class="cbtn bad" onclick="cb(this)">Needs Work</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADUNIT -->
+<div class="job-sec" id="sec-headunit">
+  <div class="sec-head">Headunit / Radio Replacement</div>
+  <div class="card">
+    <div class="card-head">Check-In Assessment</div>
+    <div class="check-row"><div class="check-label">Factory Head Unit Working?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Not Working</button></div></div>
+    <div class="check-row"><div class="check-label">Head Unit Type</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Single DIN</button><button class="cbtn ok" onclick="cb(this)">Double DIN</button><button class="cbtn ok" onclick="cb(this)">OEM Screen</button></div></div>
+    <div class="check-row"><div class="check-label">Steering Wheel Controls (SWC)</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+    <div class="check-row"><div class="check-label">Backup Camera Present?<div class="check-sub">Will need to retain or integrate</div></div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
+    <div class="check-row"><div class="check-label">Amplifier Present?<div class="check-sub">Factory or aftermarket</div></div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button><button class="cbtn na" onclick="cb(this)">Unknown</button></div></div>
+    <div class="check-row"><div class="check-label">Radio Sources / Sirius XM</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'hu-src')">Working</button><button class="cbtn bad" onclick="cbn(this,'hu-src')">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+    <div class="note-wrap" id="hu-src-note"><input type="text" placeholder="Describe issue..."></div>
+    <div class="check-row"><div class="check-label">Dash Kit / Bezel Needed?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes – On Hand</button><button class="cbtn upg" onclick="cb(this)">Yes – To Order</button><button class="cbtn na" onclick="cb(this)">No</button></div></div>
+    <div class="check-row"><div class="check-label">Wiring Harness Available?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes – On Hand</button><button class="cbtn upg" onclick="cb(this)">Yes – To Order</button><button class="cbtn na" onclick="cb(this)">No</button></div></div>
+    <div class="co-ext" id="co-headunit">
+      <div class="div"></div>
+      <div class="co-head">✔ Check-Out — Headunit Verification</div>
+      <div class="check-row"><div class="check-label">New Head Unit Powers On</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cbn(this,'co-hu-power')">No</button></div></div>
+      <div class="note-wrap" id="co-hu-power-note"><input type="text" placeholder="Describe issue..."></div>
+      <div class="check-row"><div class="check-label">All Sources Working<div class="check-sub">AM/FM, Bluetooth, Apple CarPlay/Android Auto, etc.</div></div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'co-hu-src')">All Good</button><button class="cbtn bad" onclick="cbn(this,'co-hu-src')">Issue</button></div></div>
+      <div class="note-wrap" id="co-hu-src-note"><input type="text" placeholder="Describe issue..."></div>
+      <div class="check-row"><div class="check-label">SWC Programmed &amp; Working</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+      <div class="check-row"><div class="check-label">Backup Camera Retained / Working</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cbn(this,'co-hu-cam')">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+      <div class="note-wrap" id="co-hu-cam-note"><input type="text" placeholder="Describe issue..."></div>
+      <div class="check-row"><div class="check-label">Dash Kit / Bezel Fits Clean</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cbn(this,'co-hu-bezel')">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+      <div class="note-wrap" id="co-hu-bezel-note"><input type="text" placeholder="Describe issue..."></div>
+      <div class="check-row"><div class="check-label">All Panels &amp; Trim Reinstalled</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Done</button><button class="cbtn bad" onclick="cb(this)">Needs Attention</button></div></div>
     </div>
   </div>
 </div>
@@ -625,9 +657,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
 <div class="sale-section" id="signoffSection">
   <div class="sale-title">Check-In Completed By (Front End)</div>
   <div class="chip-row" style="margin-bottom:16px;" id="salesChips">
-    <div class="chip" onclick="togChip(this)">Austen Fiedler</div>
-    <div class="chip" onclick="togChip(this)">Caleb Paulson</div>
-    <div class="chip" onclick="togChip(this)">Nick Paulson</div>
+    <button class="chip" onclick="togChip(this)">Austen Fiedler</button>
+    <button class="chip" onclick="togChip(this)">Caleb Paulson</button>
+    <button class="chip" onclick="togChip(this)">Nick Paulson</button>
   </div>
   <div class="field" style="margin-bottom:14px;">
     <label>Front End Notes (for technicians)</label>
@@ -650,10 +682,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
       <div class="field">
         <label>Check-Out Completed By</label>
         <div class="chip-row" id="techOutChips" style="margin-top:4px;">
-          <div class="chip" onclick="togChip(this)">Kyle Watson</div>
-          <div class="chip" onclick="togChip(this)">Dylan Sundin</div>
-          <div class="chip" onclick="togChip(this)">Jeff Wallace</div>
-          <div class="chip" onclick="togChip(this)">Nick Paulson</div>
+          <button class="chip" onclick="togChip(this)">Kyle Watson</button>
+          <button class="chip" onclick="togChip(this)">Dylan Sundin</button>
+          <button class="chip" onclick="togChip(this)">Jeff Wallace</button>
+          <button class="chip" onclick="togChip(this)">Nick Paulson</button>
         </div>
       </div>
     </div>
