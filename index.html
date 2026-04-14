@@ -137,6 +137,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
   .field input.flagged{background:#fdeee6!important;border-color:#d14900!important;}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 <div class="header">
@@ -744,9 +745,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
   </div>
   <button class="btn-green" style="width:100%;font-size:16px;margin-bottom:10px;" id="submitBtn" onclick="submitCheckin()">✔ Submit Check-In &amp; Send Email</button>
   <div class="email-hint" id="emailHint">
-    <strong>📧 Mail app opening...</strong> The check-in summary is pre-filled. Tap <strong>Send</strong> to deliver it, then return here and tap the button below to unlock Check-Out.
+    <strong>✔ Check-In sent!</strong> The email has been delivered directly to the front desk. Tap below to unlock Check-Out.
     <br><br>
-    <button onclick="unlockCheckout()" style="margin-top:8px;padding:12px 20px;background:var(--green);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;width:100%;">✔ I've Sent the Email — Unlock Check-Out</button>
+    <button onclick="unlockCheckout()" style="margin-top:8px;padding:12px 20px;background:var(--green);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;width:100%;">✔ Unlock Check-Out</button>
   </div>
 </div>
 
@@ -1088,20 +1089,255 @@ function buildEmailBody() {
   return lines.join('\n');
 }
 
-// ── Submit check-in ──
-function submitCheckin() {
+// ── EmailJS init ──
+emailjs.init({ publicKey: 'iqxkvJRAPGqBxMx8A' });
+
+// ── Build HTML email ──
+function buildHtmlEmail() {
+  const RED = '#C8102E';
+  const DARK = '#1a1a19';
+  const GRAY = '#555';
+  const ORANGE = '#d14900';
+  const GREEN = '#2d7a3a';
+  const AMBER = '#b06000';
+
+  function section(title) {
+    return `<tr><td style="padding:18px 0 6px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:${RED};border-bottom:2px solid ${RED};padding-bottom:6px;">${title}</div>
+    </td></tr>`;
+  }
+  function row(label, value, flag) {
+    if (!value || value === '—') return '';
+    const valStyle = flag ? `color:${ORANGE};font-weight:700;` : `color:${DARK};`;
+    return `<tr>
+      <td style="padding:5px 0;font-size:13px;color:${GRAY};font-weight:600;width:160px;vertical-align:top;">${label}</td>
+      <td style="padding:5px 0 5px 12px;font-size:13px;${valStyle}">${value}</td>
+    </tr>`;
+  }
+  function flagRow(label, value) {
+    return `<tr><td colspan="2" style="padding:5px 0;">
+      <div style="background:#fff3f0;border-left:4px solid ${ORANGE};padding:8px 12px;border-radius:4px;font-size:13px;color:${ORANGE};font-weight:700;">
+        ⚠ ${label}: ${value}
+      </div>
+    </td></tr>`;
+  }
+  function upgRow(text) {
+    return `<tr><td colspan="2" style="padding:4px 0;">
+      <div style="background:#faeeda;border-left:4px solid ${AMBER};padding:8px 12px;border-radius:4px;font-size:13px;color:${AMBER};font-weight:600;">
+        ★ ${text}
+      </div>
+    </td></tr>`;
+  }
+  function issueRow(text) {
+    return `<tr><td colspan="2" style="padding:4px 0;">
+      <div style="background:#fdeaed;border-left:4px solid ${RED};padding:8px 12px;border-radius:4px;font-size:13px;color:${RED};font-weight:600;">
+        ⚠ ${text}
+      </div>
+    </td></tr>`;
+  }
+  function groupHead(title) {
+    return `<tr><td colspan="2" style="padding:10px 0 4px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${GRAY};">${title}</div>
+    </td></tr>`;
+  }
+
+  function getSibData(checkRow) {
+    let timeVal = '', noteVal = '';
+    let sib = checkRow.nextElementSibling;
+    if (sib && sib.classList.contains('time-drop-wrap') && sib.classList.contains('show')) {
+      const sel = sib.querySelector('select'); if (sel && sel.value) timeVal = sel.value;
+      sib = sib.nextElementSibling;
+    }
+    if (sib && sib.classList.contains('note-wrap') && sib.classList.contains('show')) {
+      const inputs = sib.querySelectorAll('input, select');
+      const parts = [];
+      inputs.forEach(el => { if (el.value && el.value.trim()) parts.push(el.value.trim()); });
+      noteVal = parts.join(' | ');
+    }
+    return { timeVal, noteVal };
+  }
+
+  const ROUTINE = new Set([
+    'ok','good','working','centered','present / ok','all good','clean','confirmed','done',
+    'even','clear','enabled','complete','already led','factory led/hid','factory hid',
+    'none','n/a','no tint','stock','unknown','regular key','fob only','yes','no','tbd',
+    'hardwire','front only','usb only','halogen','standard','not tinted',
+    'normal wear & tear','normal wear &amp; tear','not equipped','factory non-serviceable'
+  ]);
+  function isRoutine(btn) {
+    return (btn.classList.contains('ok') || btn.classList.contains('na')) &&
+           ROUTINE.has(btn.textContent.trim().toLowerCase());
+  }
+
+  function scanRows(container) {
+    const out = [];
+    container.querySelectorAll('.check-row').forEach(cr => {
+      const labelEl = cr.querySelector('.check-label');
+      const selBtn  = cr.querySelector('.cbtn.on');
+      if (!labelEl || !selBtn) return;
+      const labelTxt = labelEl.childNodes[0].textContent.trim();
+      const { timeVal, noteVal } = getSibData(cr);
+      const isBad = selBtn.classList.contains('bad');
+      const isUpg = selBtn.classList.contains('upg');
+      if ((!isBad && !isUpg && !noteVal && !timeVal) || isRoutine(selBtn)) return;
+      let txt = labelTxt + ': ' + selBtn.textContent.trim();
+      if (timeVal) txt += ' [Est. swap: ' + timeVal + ']';
+      if (noteVal) txt += ' — ' + noteVal;
+      out.push({ txt, isBad, isUpg });
+    });
+    return out;
+  }
+
+  let html = `
+  <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;background:#fff;">
+    <!-- Header -->
+    <div style="background:${RED};padding:20px 24px;">
+      <div style="color:#fff;font-size:20px;font-weight:700;letter-spacing:.05em;">THE AUDIO GARAGE</div>
+      <div style="color:rgba(255,255,255,.8);font-size:13px;margin-top:2px;">Vehicle Check-In Report</div>
+    </div>
+    <div style="padding:0 24px 24px;">
+    <table style="width:100%;border-collapse:collapse;">`;
+
+  // Job Info
+  const techs = [...document.querySelectorAll('#techChips .chip.on')].map(c => c.textContent.trim()).join(', ') || '—';
+  const jobs  = [...document.querySelectorAll('.job-chip.on')].map(c => c.textContent.trim()).join(', ') || '—';
+  const dateRaw = getVal('jdate');
+  let dateFmt = dateRaw;
+  if (dateRaw) { const [y,m,d] = dateRaw.split('-'); dateFmt = m+'/'+d+'/'+y; }
+
+  html += section('Job Info');
+  html += row('Date', dateFmt + ' &nbsp; ' + (getVal('jtime') || ''));
+  html += row('Technician(s)', techs);
+  html += row('Job Type(s)', jobs);
+
+  // Customer
+  html += section('Customer');
+  html += row('Name', getVal('custName') || '—');
+  html += row('Phone', getVal('custPhone') || '—');
+
+  // Vehicle
+  const fuel = document.querySelector('#fuelBar .fuel-btn.on');
+  html += section('Vehicle');
+  html += row('Year / Make / Model', [getVal('vYear'), getVal('vMake'), getVal('vModel')].filter(Boolean).join(' ') || '—');
+  html += row('Color', getVal('vColor') || '—');
+  html += row('License Plate', (getVal('vPlate') || '—') + ' &nbsp; ' + (document.getElementById('vState').value || ''));
+  html += row('VIN', getVal('vVIN') || '<em style="color:#888;">photo — see form</em>');
+  html += row('Mileage In', getVal('mileIn') || '—');
+  html += row('Fuel Level', fuel ? fuel.textContent.trim() : '—');
+
+  // Battery
+  const ccaR   = document.getElementById('ccaRated').value;
+  const ccaT   = document.getElementById('ccaTested').value;
+  const charge = getVal('battCharge');
+  const crank  = getVal('crankV');
+  const battDate = getVal('battDate');
+  html += section('Battery Test');
+  if (ccaR) html += row('Rated CCA', ccaR);
+  if (ccaT) {
+    const ccaFlagged = ccaR && parseInt(ccaT) <= parseInt(ccaR) * 0.75;
+    if (ccaFlagged) html += flagRow('Tested CCA', ccaT + ' — BELOW 75% OF RATED, REPLACEMENT RECOMMENDED');
+    else html += row('Tested CCA', ccaT);
+  }
+  if (charge) {
+    if (parseFloat(charge) < 75) html += flagRow('Charge Level', charge + '% — BELOW 75%, CHARGE BEFORE INSTALL');
+    else html += row('Charge Level', charge + '%');
+  }
+  if (crank) {
+    if (parseFloat(crank) < 10) html += flagRow('Cranking Voltage', crank + 'V — BELOW 10V, BATTERY FAILING');
+    else html += row('Cranking Voltage', crank + 'V');
+  }
+  if (battDate) html += row('Battery Date Code', battDate);
+
+  // Upgrades
+  html += section('Upgrade Opportunities');
+  let hasUpg = false;
+  document.querySelectorAll('.check-row').forEach(cr => {
+    const labelEl = cr.querySelector('.check-label');
+    const selBtn  = cr.querySelector('.cbtn.on');
+    if (!labelEl || !selBtn || !selBtn.classList.contains('upg')) return;
+    const labelTxt = labelEl.childNodes[0].textContent.trim();
+    const { timeVal, noteVal } = getSibData(cr);
+    let txt = labelTxt + ': ' + selBtn.textContent.trim();
+    if (timeVal) txt += ' [Est. swap: ' + timeVal + ']';
+    if (noteVal) txt += ' — ' + noteVal;
+    html += upgRow(txt);
+    hasUpg = true;
+  });
+  if (!hasUpg) html += `<tr><td colspan="2" style="padding:6px 0;font-size:13px;color:${GRAY};">None flagged.</td></tr>`;
+
+  // Issues
+  html += section('Issues &amp; Flags');
+  let hasIssue = false;
+
+  document.querySelectorAll('.main > .card').forEach(card => {
+    const head = card.querySelector('.card-head');
+    if (head && head.textContent.includes('Upgrade')) return;
+    const rows = scanRows(card);
+    if (rows.length) {
+      const title = head ? head.textContent.trim() : 'General';
+      html += groupHead(title);
+      rows.forEach(r => { html += r.isBad ? issueRow(r.txt) : upgRow(r.txt); });
+      hasIssue = true;
+    }
+  });
+  document.querySelectorAll('.job-sec.show').forEach(sec_el => {
+    const sh = sec_el.querySelector('.sec-head');
+    const title = sh ? sh.textContent.trim() : 'Job';
+    const rows = scanRows(sec_el);
+    if (rows.length) {
+      html += groupHead(title);
+      rows.forEach(r => { html += r.isBad ? issueRow(r.txt) : upgRow(r.txt); });
+      hasIssue = true;
+    }
+  });
+  if (!hasIssue) html += `<tr><td colspan="2" style="padding:6px 0;font-size:13px;color:${GRAY};">No issues noted.</td></tr>`;
+
+  // Footer
+  const signName = [...document.querySelectorAll('#salesChips .sale-chip.on')].map(c => c.textContent.trim()).join(', ') || '—';
+  html += `</table></div>
+    <div style="background:#f5f5f3;padding:16px 24px;border-top:1px solid #ddd;">
+      <div style="font-size:12px;color:${GRAY};">Submitted by <strong>${signName}</strong> &nbsp;|&nbsp; The Audio Garage Check-In Form</div>
+    </div>
+  </div>`;
+
+  return html;
+}
+
+// ── Submit check-in via EmailJS ──
+async function submitCheckin() {
   if (!saleEmail) { alert('Please select who to send the check-in to.'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '⏳ Sending...';
+  btn.style.background = '#888';
+  btn.onclick = null;
+
   const saleName = [...document.querySelectorAll('#salesChips .sale-chip.on')].map(c => c.textContent.trim()).join(', ');
   const cust = getVal('custName');
   const vehicle = [getVal('vYear'), getVal('vMake'), getVal('vModel')].filter(Boolean).join(' ');
-  const subject = encodeURIComponent('Check-In: ' + (cust || 'Customer') + ' — ' + (vehicle || 'Vehicle'));
-  const body = encodeURIComponent(buildEmailBody());
-  window.location.href = 'mailto:' + saleEmail + '?subject=' + subject + '&body=' + body;
-  document.getElementById('emailHint').classList.add('show');
-  const btn = document.getElementById('submitBtn');
-  btn.textContent = '✔ Email Prepared — See Instructions Below';
-  btn.style.background = '#888';
-  btn.onclick = null;
+  const subject = 'Check-In: ' + (cust || 'Customer') + ' — ' + (vehicle || 'Vehicle');
+
+  const templateParams = {
+    to_email: saleEmail,
+    subject: subject,
+    html_body: buildHtmlEmail(),
+    submitted_by: saleName,
+    customer_name: cust || '—',
+    vehicle: vehicle || '—',
+  };
+
+  try {
+    await emailjs.send('service_1iwsfts', 'template_agcheckin', templateParams);
+    btn.textContent = '✔ Check-In Sent Successfully';
+    btn.style.background = '#2d7a3a';
+    document.getElementById('emailHint').classList.add('show');
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    btn.textContent = '✖ Send Failed — Tap to Retry';
+    btn.style.background = '#C8102E';
+    btn.onclick = submitCheckin;
+    alert('Email failed to send. Please check your connection and try again.\n\nError: ' + (err.text || JSON.stringify(err)));
+  }
 }
 
 function unlockCheckout() {
