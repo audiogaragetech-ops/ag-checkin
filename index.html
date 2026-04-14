@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0049)https://audiogaragetech-ops.github.io/ag-checkin/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>The Audio Garage – Vehicle Check-In/Out</title>
 <style>
@@ -128,7 +128,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
   <div class="shop-meta">
     <p><strong>The Audio Garage</strong></p>
     <p>5257 51st Ave S, Fargo, ND 58104</p>
-    <p>701-353-7266 &middot; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1989f979eb1859994908495989e969083909694df929e9c">[email&#160;protected]</a></p>
+    <p>701-353-7266 · <a href="https://audiogaragetech-ops.github.io/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1989f979eb1859994908495989e969083909694df929e9c">[email&nbsp;protected]</a></p>
   </div>
 </div>
 
@@ -181,7 +181,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
         <label>State</label>
         <select id="vState">
           <option value="">--</option>
-          <option selected>ND</option><option>MN</option><option>SD</option><option>MT</option>
+          <option selected="">ND</option><option>MN</option><option>SD</option><option>MT</option>
           <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
           <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
           <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
@@ -203,7 +203,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
       <label>VIN</label>
       <input type="text" id="vVIN" placeholder="Type VIN (optional if photo uploaded)" maxlength="17" style="text-transform:uppercase;">
       <div style="margin-top:6px;">
-        <div class="vin-upload-area" onclick="document.getElementById('vinFileInput').click()">
+        <div class="vin-upload-area" onclick="document.getElementById(&#39;vinFileInput&#39;).click()">
           <div class="icon">📷</div>
           <p id="vinUploadLabel">Tap to upload VIN photo</p>
         </div>
@@ -231,24 +231,24 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
 <!-- JOB TYPE -->
 <div class="sec-head">Job Type (select all that apply)</div>
 <div class="job-chips" id="jobChips">
-  <button class="job-chip" onclick="togJob(this,'audio')">🔊 Car Audio</button>
-  <button class="job-chip" onclick="togJob(this,'headunit')">📻 Headunit</button>
-  <button class="job-chip" onclick="togJob(this,'tint')">🪟 Window Tint</button>
-  <button class="job-chip" onclick="togJob(this,'remote')">📡 Remote Start</button>
-  <button class="job-chip" onclick="togJob(this,'camera')">📷 Backup Camera</button>
-  <button class="job-chip" onclick="togJob(this,'dashcam')">🎥 Dash Camera</button>
-  <button class="job-chip" onclick="togJob(this,'lighting')">💡 Lighting</button>
-  <button class="job-chip" onclick="togJob(this,'lift')">🚗 Lift Kit</button>
-  <button class="job-chip" onclick="togJob(this,'wheels')">⚙️ Wheels / Tires</button>
-  <button class="job-chip" onclick="togJob(this,'ppf')">🛡️ Paint Protection</button>
-  <button class="job-chip" onclick="togJob(this,'fleet')">🚐 Fleet</button>
-  <button class="job-chip" onclick="togJob(this,'acc')">✦ Accessories</button>
+  <button class="job-chip" onclick="togJob(this,&#39;audio&#39;)">🔊 Car Audio</button>
+  <button class="job-chip" onclick="togJob(this,&#39;headunit&#39;)">📻 Headunit</button>
+  <button class="job-chip" onclick="togJob(this,&#39;tint&#39;)">🪟 Window Tint</button>
+  <button class="job-chip" onclick="togJob(this,&#39;remote&#39;)">📡 Remote Start</button>
+  <button class="job-chip" onclick="togJob(this,&#39;camera&#39;)">📷 Backup Camera</button>
+  <button class="job-chip" onclick="togJob(this,&#39;dashcam&#39;)">🎥 Dash Camera</button>
+  <button class="job-chip" onclick="togJob(this,&#39;lighting&#39;)">💡 Lighting</button>
+  <button class="job-chip" onclick="togJob(this,&#39;lift&#39;)">🚗 Lift Kit</button>
+  <button class="job-chip" onclick="togJob(this,&#39;wheels&#39;)">⚙️ Wheels / Tires</button>
+  <button class="job-chip" onclick="togJob(this,&#39;ppf&#39;)">🛡️ Paint Protection</button>
+  <button class="job-chip" onclick="togJob(this,&#39;fleet&#39;)">🚐 Fleet</button>
+  <button class="job-chip" onclick="togJob(this,&#39;acc&#39;)">✦ Accessories</button>
 </div>
 
 <!-- PHASE TABS -->
 <div class="phase-tabs">
-  <button class="phase-tab on" id="tabIn" onclick="setPhase('in',this)">▼ Check-In</button>
-  <button class="phase-tab" id="tabOut" onclick="setPhase('out',this)" disabled>✔ Check-Out</button>
+  <button class="phase-tab on" id="tabIn" onclick="setPhase(&#39;in&#39;,this)">▼ Check-In</button>
+  <button class="phase-tab" id="tabOut" onclick="setPhase(&#39;out&#39;,this)" disabled="">✔ Check-Out</button>
 </div>
 
 <!-- UPGRADES -->
@@ -258,40 +258,40 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
   <div class="check-row">
     <div class="check-label">Low Beam Headlights<div class="check-sub">Upgrade available?</div></div>
     <div class="check-btns">
-      <button class="cbtn ok" onclick="cbUpg(this,'td-lowbeam',false)">Factory HID</button>
-      <button class="cbtn ok" onclick="cbUpg(this,'td-lowbeam',false)">Halogen</button>
-      <button class="cbtn upg" onclick="cbUpg(this,'td-lowbeam',true)">LED ★</button>
-      <button class="cbtn na" onclick="cbUpg(this,'td-lowbeam',false)">Already LED</button>
+      <button class="cbtn ok" onclick="cbUpg(this,&#39;td-lowbeam&#39;,false)">Factory HID</button>
+      <button class="cbtn ok" onclick="cbUpg(this,&#39;td-lowbeam&#39;,false)">Halogen</button>
+      <button class="cbtn upg" onclick="cbUpg(this,&#39;td-lowbeam&#39;,true)">LED ★</button>
+      <button class="cbtn na" onclick="cbUpg(this,&#39;td-lowbeam&#39;,false)">Already LED</button>
     </div>
   </div>
   <div class="time-drop-wrap" id="td-lowbeam"><div class="time-label">⏱ Estimated swap time</div><select><option value="">Select time...</option><option>10 min</option><option>20 min</option><option>30 min</option><option>40 min</option><option>50 min</option><option>1 hr</option><option>1 hr 15 min</option><option>1 hr 30 min</option><option>2 hr</option><option>2+ hr</option></select></div>
   <div class="check-row">
     <div class="check-label">High Beam Headlights<div class="check-sub">Upgrade available?</div></div>
     <div class="check-btns">
-      <button class="cbtn ok" onclick="cbUpg(this,'td-highbeam',false)">Factory HID</button>
-      <button class="cbtn ok" onclick="cbUpg(this,'td-highbeam',false)">Halogen</button>
-      <button class="cbtn upg" onclick="cbUpg(this,'td-highbeam',true)">LED ★</button>
-      <button class="cbtn na" onclick="cbUpg(this,'td-highbeam',false)">Already LED</button>
+      <button class="cbtn ok" onclick="cbUpg(this,&#39;td-highbeam&#39;,false)">Factory HID</button>
+      <button class="cbtn ok" onclick="cbUpg(this,&#39;td-highbeam&#39;,false)">Halogen</button>
+      <button class="cbtn upg" onclick="cbUpg(this,&#39;td-highbeam&#39;,true)">LED ★</button>
+      <button class="cbtn na" onclick="cbUpg(this,&#39;td-highbeam&#39;,false)">Already LED</button>
     </div>
   </div>
   <div class="time-drop-wrap" id="td-highbeam"><div class="time-label">⏱ Estimated swap time</div><select><option value="">Select time...</option><option>10 min</option><option>20 min</option><option>30 min</option><option>40 min</option><option>50 min</option><option>1 hr</option><option>1 hr 15 min</option><option>1 hr 30 min</option><option>2 hr</option><option>2+ hr</option></select></div>
   <div class="check-row">
     <div class="check-label">Fog Lights<div class="check-sub">Upgrade available?</div></div>
     <div class="check-btns">
-      <button class="cbtn ok" onclick="cbUpg(this,'td-fog',false)">Halogen</button>
-      <button class="cbtn upg" onclick="cbUpg(this,'td-fog',true)">LED ★</button>
-      <button class="cbtn na" onclick="cbUpg(this,'td-fog',false)">Already LED</button>
-      <button class="cbtn na" onclick="cbUpg(this,'td-fog',false)">N/A</button>
+      <button class="cbtn ok" onclick="cbUpg(this,&#39;td-fog&#39;,false)">Halogen</button>
+      <button class="cbtn upg" onclick="cbUpg(this,&#39;td-fog&#39;,true)">LED ★</button>
+      <button class="cbtn na" onclick="cbUpg(this,&#39;td-fog&#39;,false)">Already LED</button>
+      <button class="cbtn na" onclick="cbUpg(this,&#39;td-fog&#39;,false)">N/A</button>
     </div>
   </div>
   <div class="time-drop-wrap" id="td-fog"><div class="time-label">⏱ Estimated swap time</div><select><option value="">Select time...</option><option>10 min</option><option>20 min</option><option>30 min</option><option>40 min</option><option>50 min</option><option>1 hr</option><option>1 hr 15 min</option><option>1 hr 30 min</option><option>2 hr</option><option>2+ hr</option></select></div>
   <div class="check-row">
     <div class="check-label">Reverse Lights<div class="check-sub">Upgrade available?</div></div>
     <div class="check-btns">
-      <button class="cbtn ok" onclick="cbUpg(this,'td-reverse',false)">Standard</button>
-      <button class="cbtn upg" onclick="cbUpg(this,'td-reverse',true)">LED ★</button>
-      <button class="cbtn na" onclick="cbUpg(this,'td-reverse',false)">Already LED</button>
-      <button class="cbtn na" onclick="cbUpg(this,'td-reverse',false)">N/A</button>
+      <button class="cbtn ok" onclick="cbUpg(this,&#39;td-reverse&#39;,false)">Standard</button>
+      <button class="cbtn upg" onclick="cbUpg(this,&#39;td-reverse&#39;,true)">LED ★</button>
+      <button class="cbtn na" onclick="cbUpg(this,&#39;td-reverse&#39;,false)">Already LED</button>
+      <button class="cbtn na" onclick="cbUpg(this,&#39;td-reverse&#39;,false)">N/A</button>
     </div>
   </div>
   <div class="time-drop-wrap" id="td-reverse"><div class="time-label">⏱ Estimated swap time</div><select><option value="">Select time...</option><option>10 min</option><option>20 min</option><option>30 min</option><option>40 min</option><option>50 min</option><option>1 hr</option></select></div>
@@ -307,45 +307,45 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
   <div class="check-row">
     <div class="check-label">Exterior Body Condition</div>
     <div class="check-btns">
-      <button class="cbtn ok" onclick="cbnMulti(this,'body',false)">Good</button>
-      <button class="cbtn ok" onclick="cbnMulti(this,'body',false)">Normal Wear &amp; Tear</button>
-      <button class="cbtn bad" onclick="cbnMulti(this,'body',true)">Damage — Note</button>
+      <button class="cbtn ok" onclick="cbnMulti(this,&#39;body&#39;,false)">Good</button>
+      <button class="cbtn ok" onclick="cbnMulti(this,&#39;body&#39;,false)">Normal Wear &amp; Tear</button>
+      <button class="cbtn bad" onclick="cbnMulti(this,&#39;body&#39;,true)">Damage — Note</button>
     </div>
   </div>
   <div class="note-wrap" id="body-note"><input type="text" placeholder="Describe damage, scratches, dents, location..."></div>
-  <div class="check-row"><div class="check-label">High / Low Beam Headlights</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'hlbeam')">OK</button><button class="cbtn bad" onclick="cbn(this,'hlbeam')">Burnt Out</button></div></div>
+  <div class="check-row"><div class="check-label">High / Low Beam Headlights</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;hlbeam&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;hlbeam&#39;)">Burnt Out</button></div></div>
   <div class="note-wrap" id="hlbeam-note"><input type="text" placeholder="Describe issue..."></div>
-  <div class="check-row"><div class="check-label">Fog Lights</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'fog')">OK</button><button class="cbtn bad" onclick="cbn(this,'fog')">Burnt Out</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+  <div class="check-row"><div class="check-label">Fog Lights</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;fog&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;fog&#39;)">Burnt Out</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
   <div class="note-wrap" id="fog-note"><input type="text" placeholder="Describe issue..."></div>
-  <div class="check-row"><div class="check-label">Front Exterior Lights<div class="check-sub">Turn signals, DRL</div></div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'fext')">OK</button><button class="cbtn bad" onclick="cbn(this,'fext')">Issue</button></div></div>
+  <div class="check-row"><div class="check-label">Front Exterior Lights<div class="check-sub">Turn signals, DRL</div></div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;fext&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;fext&#39;)">Issue</button></div></div>
   <div class="note-wrap" id="fext-note"><input type="text" placeholder="Describe issue..."></div>
-  <div class="check-row"><div class="check-label">Rear Exterior Lights<div class="check-sub">Tail, brake, reverse, license plate</div></div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'rext')">OK</button><button class="cbtn bad" onclick="cbn(this,'rext')">Burnt Out</button></div></div>
+  <div class="check-row"><div class="check-label">Rear Exterior Lights<div class="check-sub">Tail, brake, reverse, license plate</div></div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;rext&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;rext&#39;)">Burnt Out</button></div></div>
   <div class="note-wrap" id="rext-note"><input type="text" placeholder="Bulb type, location..."></div>
-  <div class="check-row"><div class="check-label">Window Condition (exterior)</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'wincond')">OK</button><button class="cbtn bad" onclick="cbn(this,'wincond')">Damage</button></div></div>
+  <div class="check-row"><div class="check-label">Window Condition (exterior)</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;wincond&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;wincond&#39;)">Damage</button></div></div>
   <div class="note-wrap" id="wincond-note"><input type="text" placeholder="Describe damage..."></div>
-  <div class="check-row"><div class="check-label">Tires &amp; Rims</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'tires')">OK</button><button class="cbtn bad" onclick="cbn(this,'tires')">Issue</button></div></div>
+  <div class="check-row"><div class="check-label">Tires &amp; Rims</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;tires&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;tires&#39;)">Issue</button></div></div>
   <div class="note-wrap" id="tires-note"><input type="text" placeholder="Describe issue..."></div>
   <div class="check-row"><div class="check-label">Backup Camera</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">OK</button><button class="cbtn bad" onclick="cb(this)">Not OK</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
   <div class="check-row"><div class="check-label">Doors / Trunk Open &amp; Close</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">OK</button><button class="cbtn bad" onclick="cb(this)">Issue</button></div></div>
-  <div class="check-row"><div class="check-label">Battery Test</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'batt')">Good</button><button class="cbtn bad" onclick="cbn(this,'batt')">Low / Bad</button></div></div>
+  <div class="check-row"><div class="check-label">Battery Test</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;batt&#39;)">Good</button><button class="cbtn bad" onclick="cbn(this,&#39;batt&#39;)">Low / Bad</button></div></div>
   <div class="note-wrap" id="batt-note"><input type="text" placeholder="Voltage reading, action taken..."></div>
 </div>
 
 <!-- INTERIOR -->
 <div class="sec-head">Vehicle Interior</div>
 <div class="card">
-  <div class="check-row"><div class="check-label">Windows Roll Up / Down</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'winroll')">OK</button><button class="cbtn bad" onclick="cbn(this,'winroll')">Issue</button></div></div>
+  <div class="check-row"><div class="check-label">Windows Roll Up / Down</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;winroll&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;winroll&#39;)">Issue</button></div></div>
   <div class="note-wrap" id="winroll-note"><input type="text" placeholder="Which windows, describe issue..."></div>
-  <div class="check-row"><div class="check-label">Climate Controls</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'climate')">OK</button><button class="cbtn bad" onclick="cbn(this,'climate')">Issue</button></div></div>
+  <div class="check-row"><div class="check-label">Climate Controls</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;climate&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;climate&#39;)">Issue</button></div></div>
   <div class="note-wrap" id="climate-note"><input type="text" placeholder="Describe issue..."></div>
-  <div class="check-row"><div class="check-label">Dash &amp; Panels Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'dashpanel')">OK</button><button class="cbtn bad" onclick="cbn(this,'dashpanel')">Issue</button></div></div>
+  <div class="check-row"><div class="check-label">Dash &amp; Panels Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;dashpanel&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;dashpanel&#39;)">Issue</button></div></div>
   <div class="note-wrap" id="dashpanel-note"><input type="text" placeholder="Missing covers, damage..."></div>
-  <div class="check-row"><div class="check-label">Radio Functions</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'radio')">OK</button><button class="cbtn bad" onclick="cbn(this,'radio')">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+  <div class="check-row"><div class="check-label">Radio Functions</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;radio&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;radio&#39;)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
   <div class="note-wrap" id="radio-note"><input type="text" placeholder="Describe issue..."></div>
-  <div class="check-row"><div class="check-label">Instrument Cluster</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'cluster')">OK</button><button class="cbtn bad" onclick="cbn(this,'cluster')">Issue</button></div></div>
+  <div class="check-row"><div class="check-label">Instrument Cluster</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;cluster&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;cluster&#39;)">Issue</button></div></div>
   <div class="note-wrap" id="cluster-note"><input type="text" placeholder="Warning lights, errors..."></div>
   <div class="check-row"><div class="check-label">Door Locks</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">OK</button><button class="cbtn bad" onclick="cb(this)">Issue</button></div></div>
-  <div class="check-row"><div class="check-label">Seat Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'seats')">OK</button><button class="cbtn bad" onclick="cbn(this,'seats')">Issue</button></div></div>
+  <div class="check-row"><div class="check-label">Seat Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;seats&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;seats&#39;)">Issue</button></div></div>
   <div class="note-wrap" id="seats-note"><input type="text" placeholder="Describe damage..."></div>
   <div class="check-row"><div class="check-label">Speakers Working (general)</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">OK</button><button class="cbtn bad" onclick="cb(this)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
 </div>
@@ -358,7 +358,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="check-row"><div class="check-label">Factory Head Unit Working?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Not Working</button><button class="cbtn na" onclick="cb(this)">Aftermarket</button></div></div>
     <div class="check-row"><div class="check-label">Radio Fade &amp; Balance</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Centered</button><button class="cbtn bad" onclick="cb(this)">Off</button></div></div>
     <div class="check-row"><div class="check-label">Steering Wheel Controls (SWC)</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
-    <div class="check-row"><div class="check-label">Radio Sources / Sirius XM</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'rsrc')">OK</button><button class="cbtn bad" onclick="cbn(this,'rsrc')">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+    <div class="check-row"><div class="check-label">Radio Sources / Sirius XM</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;rsrc&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;rsrc&#39;)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
     <div class="note-wrap" id="rsrc-note"><input type="text" placeholder="Describe issue..."></div>
     <div class="div"></div>
     <div class="card-head" style="margin-top:0;">Speakers</div>
@@ -371,7 +371,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="check-row"><div class="check-label">Factory Amplifier</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Present / OK</button><button class="cbtn bad" onclick="cb(this)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
     <div class="co-ext" id="co-audio">
       <div class="div"></div><div class="co-head">✔ Check-Out — Audio Verification</div>
-      <div class="check-row"><div class="check-label">All Speakers Working Post-Install</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'co-spk')">All Good</button><button class="cbtn bad" onclick="cbn(this,'co-spk')">Issue</button></div></div>
+      <div class="check-row"><div class="check-label">All Speakers Working Post-Install</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;co-spk&#39;)">All Good</button><button class="cbtn bad" onclick="cbn(this,&#39;co-spk&#39;)">Issue</button></div></div>
       <div class="note-wrap" id="co-spk-note"><input type="text" placeholder="Describe issue..."></div>
       <div class="check-row"><div class="check-label">SWC Programmed &amp; Working</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
       <div class="check-row"><div class="check-label">Fade, Balance &amp; Tuning Set</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Done</button><button class="cbtn bad" onclick="cb(this)">Needs Work</button></div></div>
@@ -389,21 +389,21 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="check-row"><div class="check-label">Steering Wheel Controls (SWC)</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
     <div class="check-row"><div class="check-label">Backup Camera Present?<div class="check-sub">Will need to retain or integrate</div></div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
     <div class="check-row"><div class="check-label">Amplifier Present?<div class="check-sub">Factory or aftermarket</div></div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button><button class="cbtn na" onclick="cb(this)">Unknown</button></div></div>
-    <div class="check-row"><div class="check-label">Radio Sources / Sirius XM</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'hu-src')">Working</button><button class="cbtn bad" onclick="cbn(this,'hu-src')">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+    <div class="check-row"><div class="check-label">Radio Sources / Sirius XM</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;hu-src&#39;)">Working</button><button class="cbtn bad" onclick="cbn(this,&#39;hu-src&#39;)">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
     <div class="note-wrap" id="hu-src-note"><input type="text" placeholder="Describe issue..."></div>
     <div class="check-row"><div class="check-label">Dash Kit / Bezel Needed?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes – On Hand</button><button class="cbtn upg" onclick="cb(this)">Yes – To Order</button><button class="cbtn na" onclick="cb(this)">No</button></div></div>
     <div class="check-row"><div class="check-label">Wiring Harness Available?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes – On Hand</button><button class="cbtn upg" onclick="cb(this)">Yes – To Order</button><button class="cbtn na" onclick="cb(this)">No</button></div></div>
     <div class="co-ext" id="co-headunit">
       <div class="div"></div>
       <div class="co-head">✔ Check-Out — Headunit Verification</div>
-      <div class="check-row"><div class="check-label">New Head Unit Powers On</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cbn(this,'co-hu-power')">No</button></div></div>
+      <div class="check-row"><div class="check-label">New Head Unit Powers On</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cbn(this,&#39;co-hu-power&#39;)">No</button></div></div>
       <div class="note-wrap" id="co-hu-power-note"><input type="text" placeholder="Describe issue..."></div>
-      <div class="check-row"><div class="check-label">All Sources Working<div class="check-sub">AM/FM, Bluetooth, Apple CarPlay/Android Auto, etc.</div></div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'co-hu-src')">All Good</button><button class="cbtn bad" onclick="cbn(this,'co-hu-src')">Issue</button></div></div>
+      <div class="check-row"><div class="check-label">All Sources Working<div class="check-sub">AM/FM, Bluetooth, Apple CarPlay/Android Auto, etc.</div></div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;co-hu-src&#39;)">All Good</button><button class="cbtn bad" onclick="cbn(this,&#39;co-hu-src&#39;)">Issue</button></div></div>
       <div class="note-wrap" id="co-hu-src-note"><input type="text" placeholder="Describe issue..."></div>
       <div class="check-row"><div class="check-label">SWC Programmed &amp; Working</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
-      <div class="check-row"><div class="check-label">Backup Camera Retained / Working</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cbn(this,'co-hu-cam')">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+      <div class="check-row"><div class="check-label">Backup Camera Retained / Working</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cbn(this,&#39;co-hu-cam&#39;)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
       <div class="note-wrap" id="co-hu-cam-note"><input type="text" placeholder="Describe issue..."></div>
-      <div class="check-row"><div class="check-label">Dash Kit / Bezel Fits Clean</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cbn(this,'co-hu-bezel')">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+      <div class="check-row"><div class="check-label">Dash Kit / Bezel Fits Clean</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cbn(this,&#39;co-hu-bezel&#39;)">Issue</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
       <div class="note-wrap" id="co-hu-bezel-note"><input type="text" placeholder="Describe issue..."></div>
       <div class="check-row"><div class="check-label">All Panels &amp; Trim Reinstalled</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Done</button><button class="cbtn bad" onclick="cb(this)">Needs Attention</button></div></div>
     </div>
@@ -419,23 +419,23 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="check-row"><div class="check-label">Roof Type</div><div class="check-btns"><button class="cbtn na" onclick="cb(this)">None</button><button class="cbtn ok" onclick="cb(this)">Sunroof</button><button class="cbtn upg" onclick="cb(this)">Panoramic</button></div></div>
     <div class="div"></div>
     <div class="card-head" style="margin-top:0;">Glass Inspection</div>
-    <div class="check-row"><div class="check-label">Front Windshield</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'g-fw')">OK</button><button class="cbtn bad" onclick="cbn(this,'g-fw')">Damage</button></div></div>
+    <div class="check-row"><div class="check-label">Front Windshield</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;g-fw&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;g-fw&#39;)">Damage</button></div></div>
     <div class="note-wrap" id="g-fw-note"><input type="text" placeholder="Chips, cracks, scratches..."></div>
-    <div class="check-row"><div class="check-label">Front Driver Window</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'g-fd')">OK</button><button class="cbtn bad" onclick="cbn(this,'g-fd')">Damage</button></div></div>
+    <div class="check-row"><div class="check-label">Front Driver Window</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;g-fd&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;g-fd&#39;)">Damage</button></div></div>
     <div class="note-wrap" id="g-fd-note"><input type="text" placeholder="Scratches, chips..."></div>
-    <div class="check-row"><div class="check-label">Front Passenger Window</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'g-fp')">OK</button><button class="cbtn bad" onclick="cbn(this,'g-fp')">Damage</button></div></div>
+    <div class="check-row"><div class="check-label">Front Passenger Window</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;g-fp&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;g-fp&#39;)">Damage</button></div></div>
     <div class="note-wrap" id="g-fp-note"><input type="text" placeholder="Scratches, chips..."></div>
-    <div class="check-row"><div class="check-label">Rear Driver Window</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'g-rd')">OK</button><button class="cbtn bad" onclick="cbn(this,'g-rd')">Damage</button></div></div>
+    <div class="check-row"><div class="check-label">Rear Driver Window</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;g-rd&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;g-rd&#39;)">Damage</button></div></div>
     <div class="note-wrap" id="g-rd-note"><input type="text" placeholder="Scratches, chips..."></div>
-    <div class="check-row"><div class="check-label">Rear Passenger Window</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'g-rp')">OK</button><button class="cbtn bad" onclick="cbn(this,'g-rp')">Damage</button></div></div>
+    <div class="check-row"><div class="check-label">Rear Passenger Window</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;g-rp&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;g-rp&#39;)">Damage</button></div></div>
     <div class="note-wrap" id="g-rp-note"><input type="text" placeholder="Scratches, chips..."></div>
-    <div class="check-row"><div class="check-label">Rear Windshield</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'g-rw')">OK</button><button class="cbtn bad" onclick="cbn(this,'g-rw')">Damage</button></div></div>
+    <div class="check-row"><div class="check-label">Rear Windshield</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;g-rw&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;g-rw&#39;)">Damage</button></div></div>
     <div class="note-wrap" id="g-rw-note"><input type="text" placeholder="Scratches, chips..."></div>
-    <div class="check-row"><div class="check-label">Sunroof / Panoramic Glass</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'g-sr')">OK</button><button class="cbtn bad" onclick="cbn(this,'g-sr')">Damage</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+    <div class="check-row"><div class="check-label">Sunroof / Panoramic Glass</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;g-sr&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;g-sr&#39;)">Damage</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
     <div class="note-wrap" id="g-sr-note"><input type="text" placeholder="Describe damage..."></div>
     <div class="div"></div>
     <div class="card-head" style="margin-top:0;">Window Operation</div>
-    <div class="check-row"><div class="check-label">All Windows Roll Up &amp; Down</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'twin-roll')">All Good</button><button class="cbtn bad" onclick="cbn(this,'twin-roll')">Issue</button></div></div>
+    <div class="check-row"><div class="check-label">All Windows Roll Up &amp; Down</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;twin-roll&#39;)">All Good</button><button class="cbtn bad" onclick="cbn(this,&#39;twin-roll&#39;)">Issue</button></div></div>
     <div class="note-wrap" id="twin-roll-note"><input type="text" placeholder="Which window(s) have issues?"></div>
     <div class="co-ext" id="co-tint">
       <div class="div"></div><div class="co-head">✔ Check-Out — Tint Completion</div>
@@ -466,7 +466,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
         <button class="cbtn ok" onclick="rsUnit(this)">PRO T13</button><button class="cbtn ok" onclick="rsUnit(this)">PRO R5</button><button class="cbtn ok" onclick="rsUnit(this)">T12</button><button class="cbtn ok" onclick="rsUnit(this)">PRO G18</button><button class="cbtn ok" onclick="rsUnit(this)">Viper LED</button><button class="cbtn ok" onclick="rsUnit(this)">Viper LCD</button>
       </div>
       <div class="check-row"><div class="check-label">Runtime</div><div class="check-btns" id="rsRunBtns"><button class="cbtn ok" onclick="rsRun(this)">15 min</button><button class="cbtn ok" onclick="rsRun(this)">20 min</button><button class="cbtn ok" onclick="rsRun(this)">25 min</button><button class="cbtn ok" onclick="rsRun(this)">30 min</button></div></div>
-      <div class="check-row"><div class="check-label">Remote Start Functioning</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'co-rs')">Working</button><button class="cbtn bad" onclick="cbn(this,'co-rs')">Issue</button></div></div>
+      <div class="check-row"><div class="check-label">Remote Start Functioning</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;co-rs&#39;)">Working</button><button class="cbtn bad" onclick="cbn(this,&#39;co-rs&#39;)">Issue</button></div></div>
       <div class="note-wrap" id="co-rs-note"><input type="text" placeholder="Describe issue..."></div>
       <div class="check-row"><div class="check-label">Takeover Working</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
       <div class="check-row"><div class="check-label">Proximity Lock</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Enabled</button><button class="cbtn bad" onclick="cb(this)">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
@@ -481,13 +481,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
   <div class="card">
     <div class="card-head">Check-In Assessment</div>
     <div class="check-row"><div class="check-label">Factory Camera Present?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
-    <div class="check-row"><div class="check-label">Factory Camera Working?</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'cam-in')">Working</button><button class="cbtn bad" onclick="cbn(this,'cam-in')">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
+    <div class="check-row"><div class="check-label">Factory Camera Working?</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;cam-in&#39;)">Working</button><button class="cbtn bad" onclick="cbn(this,&#39;cam-in&#39;)">Not Working</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
     <div class="note-wrap" id="cam-in-note"><input type="text" placeholder="Describe issue..."></div>
     <div class="check-row"><div class="check-label">Display / Head Unit Compatible?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button><button class="cbtn na" onclick="cb(this)">TBD</button></div></div>
     <div class="check-row"><div class="check-label">Reverse Light Signal Working?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Working</button><button class="cbtn bad" onclick="cb(this)">Issue</button></div></div>
     <div class="co-ext" id="co-camera">
       <div class="div"></div><div class="co-head">✔ Check-Out — Backup Camera</div>
-      <div class="check-row"><div class="check-label">Camera Image Quality</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'cam-img')">Clear</button><button class="cbtn bad" onclick="cbn(this,'cam-img')">Blurry / Issue</button></div></div>
+      <div class="check-row"><div class="check-label">Camera Image Quality</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;cam-img&#39;)">Clear</button><button class="cbtn bad" onclick="cbn(this,&#39;cam-img&#39;)">Blurry / Issue</button></div></div>
       <div class="note-wrap" id="cam-img-note"><input type="text" placeholder="Describe issue..."></div>
       <div class="check-row"><div class="check-label">Parking Guidelines Displaying</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
       <div class="check-row"><div class="check-label">Auto-Activates on Reverse</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
@@ -504,7 +504,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="check-row"><div class="check-label">Install Type</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Hardwire</button><button class="cbtn upg" onclick="cb(this)">USB Only</button></div></div>
     <div class="check-row"><div class="check-label">Camera Configuration</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Front Only</button><button class="cbtn upg" onclick="cb(this)">Front + Rear</button><button class="cbtn upg" onclick="cb(this)">Front + Interior</button><button class="cbtn upg" onclick="cb(this)">3-Channel</button></div></div>
     <div class="check-row"><div class="check-label">Interior Camera Included?<div class="check-sub">Cabin-facing camera</div></div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
-    <div class="check-row"><div class="check-label">Windshield Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'dash-glass')">OK</button><button class="cbtn bad" onclick="cbn(this,'dash-glass')">Damage</button></div></div>
+    <div class="check-row"><div class="check-label">Windshield Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;dash-glass&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;dash-glass&#39;)">Damage</button></div></div>
     <div class="note-wrap" id="dash-glass-note"><input type="text" placeholder="Chips, cracks..."></div>
     <div class="co-ext" id="co-dashcam">
       <div class="div"></div><div class="co-head">✔ Check-Out — Dash Camera</div>
@@ -524,14 +524,14 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="card-head">Lighting Install — Check-In</div>
     <div class="check-row"><div class="check-label">Lighting Type Requested</div><div class="check-btns"><button class="cbtn ok" onclick="togCbtn(this)">Headlights</button><button class="cbtn ok" onclick="togCbtn(this)">Fog Lights</button><button class="cbtn ok" onclick="togCbtn(this)">Interior</button><button class="cbtn ok" onclick="togCbtn(this)">Underglow</button><button class="cbtn ok" onclick="togCbtn(this)">Other</button></div></div>
     <div class="check-row"><div class="check-label">Bulb / Kit Type</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">LED</button><button class="cbtn upg" onclick="cb(this)">HID</button><button class="cbtn na" onclick="cb(this)">Other</button></div></div>
-    <div class="check-row"><div class="check-label">Existing Lights Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'light-cond')">OK</button><button class="cbtn bad" onclick="cbn(this,'light-cond')">Issue</button></div></div>
+    <div class="check-row"><div class="check-label">Existing Lights Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;light-cond&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;light-cond&#39;)">Issue</button></div></div>
     <div class="note-wrap" id="light-cond-note"><input type="text" placeholder="Describe pre-existing issues..."></div>
     <div class="co-ext" id="co-lighting">
       <div class="div"></div><div class="co-head">✔ Check-Out — Lighting</div>
-      <div class="check-row"><div class="check-label">All Lights Functioning</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'co-lights')">Yes</button><button class="cbtn bad" onclick="cbn(this,'co-lights')">Issue</button></div></div>
+      <div class="check-row"><div class="check-label">All Lights Functioning</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;co-lights&#39;)">Yes</button><button class="cbtn bad" onclick="cbn(this,&#39;co-lights&#39;)">Issue</button></div></div>
       <div class="note-wrap" id="co-lights-note"><input type="text" placeholder="Describe issue..."></div>
       <div class="check-row"><div class="check-label">Aim / Alignment Checked</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Done</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
-      <div class="check-row"><div class="check-label">No Error Codes / Flicker</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Clear</button><button class="cbtn bad" onclick="cbn(this,'co-flicker')">Issue</button></div></div>
+      <div class="check-row"><div class="check-label">No Error Codes / Flicker</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Clear</button><button class="cbtn bad" onclick="cbn(this,&#39;co-flicker&#39;)">Issue</button></div></div>
       <div class="note-wrap" id="co-flicker-note"><input type="text" placeholder="Describe issue..."></div>
     </div>
   </div>
@@ -544,17 +544,17 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="card-head">Check-In Assessment</div>
     <div class="check-row"><div class="check-label">Existing Lift / Leveling Kit?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">Stock</button></div></div>
     <div class="check-row"><div class="check-label">Lift Type Requested</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Leveling</button><button class="cbtn upg" onclick="cb(this)">Spacer</button><button class="cbtn na" onclick="cb(this)">Full Lift</button></div></div>
-    <div class="check-row"><div class="check-label">Front Suspension Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'lift-fs')">OK</button><button class="cbtn bad" onclick="cbn(this,'lift-fs')">Worn / Issue</button></div></div>
+    <div class="check-row"><div class="check-label">Front Suspension Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;lift-fs&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;lift-fs&#39;)">Worn / Issue</button></div></div>
     <div class="note-wrap" id="lift-fs-note"><input type="text" placeholder="Describe wear or damage..."></div>
-    <div class="check-row"><div class="check-label">Rear Suspension Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'lift-rs')">OK</button><button class="cbtn bad" onclick="cbn(this,'lift-rs')">Worn / Issue</button></div></div>
+    <div class="check-row"><div class="check-label">Rear Suspension Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;lift-rs&#39;)">OK</button><button class="cbtn bad" onclick="cbn(this,&#39;lift-rs&#39;)">Worn / Issue</button></div></div>
     <div class="note-wrap" id="lift-rs-note"><input type="text" placeholder="Describe wear or damage..."></div>
-    <div class="check-row"><div class="check-label">Ball Joints / CV Boots</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Good</button><button class="cbtn bad" onclick="cbn(this,'lift-bj')">Issue</button></div></div>
+    <div class="check-row"><div class="check-label">Ball Joints / CV Boots</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Good</button><button class="cbtn bad" onclick="cbn(this,&#39;lift-bj&#39;)">Issue</button></div></div>
     <div class="note-wrap" id="lift-bj-note"><input type="text" placeholder="Describe issue..."></div>
     <div class="check-row"><div class="check-label">Alignment Will Be Needed</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes – Noted</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
     <div class="co-ext" id="co-lift">
       <div class="div"></div><div class="co-head">✔ Check-Out — Lift Kit</div>
       <div class="check-row"><div class="check-label">All Hardware Torqued to Spec</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Done</button><button class="cbtn bad" onclick="cb(this)">Needs Check</button></div></div>
-      <div class="check-row"><div class="check-label">Vehicle Sits Level / Even</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'lift-lvl')">Even</button><button class="cbtn bad" onclick="cbn(this,'lift-lvl')">Off – Note</button></div></div>
+      <div class="check-row"><div class="check-label">Vehicle Sits Level / Even</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;lift-lvl&#39;)">Even</button><button class="cbtn bad" onclick="cbn(this,&#39;lift-lvl&#39;)">Off – Note</button></div></div>
       <div class="note-wrap" id="lift-lvl-note"><input type="text" placeholder="Describe discrepancy..."></div>
       <div class="check-row"><div class="check-label">Headlights Re-Aimed</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Done</button><button class="cbtn bad" onclick="cb(this)">Needed</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
       <div class="check-row"><div class="check-label">Alignment Recommendation Given</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
@@ -572,9 +572,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
       <div class="field"><label>New Wheel / Tire Size</label><input type="text" placeholder="e.g. 285/75R18"></div>
     </div>
     <div class="check-row"><div class="check-label">TPMS Sensors Present?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button><button class="cbtn na" onclick="cb(this)">Unknown</button></div></div>
-    <div class="check-row"><div class="check-label">Existing Wheel Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'whl-cond')">Good</button><button class="cbtn bad" onclick="cbn(this,'whl-cond')">Damage</button></div></div>
+    <div class="check-row"><div class="check-label">Existing Wheel Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;whl-cond&#39;)">Good</button><button class="cbtn bad" onclick="cbn(this,&#39;whl-cond&#39;)">Damage</button></div></div>
     <div class="note-wrap" id="whl-cond-note"><input type="text" placeholder="Curb rash, cracks..."></div>
-    <div class="check-row"><div class="check-label">Existing Tire Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'tire-cond')">Good</button><button class="cbtn bad" onclick="cbn(this,'tire-cond')">Worn / Issue</button></div></div>
+    <div class="check-row"><div class="check-label">Existing Tire Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;tire-cond&#39;)">Good</button><button class="cbtn bad" onclick="cbn(this,&#39;tire-cond&#39;)">Worn / Issue</button></div></div>
     <div class="note-wrap" id="tire-cond-note"><input type="text" placeholder="Tread depth, sidewall damage..."></div>
     <div class="check-row"><div class="check-label">Lug Nut Replacement Needed?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
     <div class="co-ext" id="co-wheels">
@@ -595,12 +595,12 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="card-head">Check-In Assessment</div>
     <div class="check-row"><div class="check-label">Existing PPF / Wrap?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
     <div class="check-row"><div class="check-label">Coverage Requested</div><div class="check-btns"><button class="cbtn ok" onclick="togCbtn(this)">Full Hood</button><button class="cbtn ok" onclick="togCbtn(this)">Partial Hood</button><button class="cbtn ok" onclick="togCbtn(this)">Fenders</button><button class="cbtn ok" onclick="togCbtn(this)">Full Vehicle</button></div></div>
-    <div class="check-row"><div class="check-label">Paint Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'ppf-paint')">Good</button><button class="cbtn bad" onclick="cbn(this,'ppf-paint')">Issues – Note</button></div></div>
+    <div class="check-row"><div class="check-label">Paint Condition</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;ppf-paint&#39;)">Good</button><button class="cbtn bad" onclick="cbn(this,&#39;ppf-paint&#39;)">Issues – Note</button></div></div>
     <div class="note-wrap" id="ppf-paint-note"><input type="text" placeholder="Scratches, chips, oxidation..."></div>
     <div class="check-row"><div class="check-label">Surface Clean / Decontaminated?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">Needs Prep</button></div></div>
     <div class="co-ext" id="co-ppf">
       <div class="div"></div><div class="co-head">✔ Check-Out — PPF</div>
-      <div class="check-row"><div class="check-label">Film Applied — No Bubbles / Lifting</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'ppf-film')">Clean</button><button class="cbtn bad" onclick="cbn(this,'ppf-film')">Issue</button></div></div>
+      <div class="check-row"><div class="check-label">Film Applied — No Bubbles / Lifting</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;ppf-film&#39;)">Clean</button><button class="cbtn bad" onclick="cbn(this,&#39;ppf-film&#39;)">Issue</button></div></div>
       <div class="note-wrap" id="ppf-film-note"><input type="text" placeholder="Location, describe issue..."></div>
       <div class="check-row"><div class="check-label">Edges Sealed Properly</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">Needs Attention</button></div></div>
       <div class="check-row"><div class="check-label">Customer Cure Instructions Given</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button></div></div>
@@ -615,9 +615,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="card-head">Fleet Install — Check-In</div>
     <div class="check-row"><div class="check-label">Fleet Services Requested<div class="check-sub">Select all that apply</div></div><div class="check-btns" style="flex-wrap:wrap;max-width:320px;"><button class="cbtn ok" onclick="togCbtn(this)">Camera</button><button class="cbtn ok" onclick="togCbtn(this)">GeoTab</button><button class="cbtn ok" onclick="togCbtn(this)">Cell Booster</button><button class="cbtn ok" onclick="togCbtn(this)">Lighting</button><button class="cbtn ok" onclick="togCbtn(this)">Other</button></div></div>
     <div class="check-row"><div class="check-label">Fleet Vehicle Number / ID</div><div class="check-btns"><input type="text" placeholder="Unit #" style="width:120px;padding:10px 12px;background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:inherit;font-size:14px;outline:none;"></div></div>
-    <div class="check-row"><div class="check-label">Existing Equipment On Vehicle?</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'fleet-exist')">Yes – Note</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
+    <div class="check-row"><div class="check-label">Existing Equipment On Vehicle?</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;fleet-exist&#39;)">Yes – Note</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
     <div class="note-wrap" id="fleet-exist-note"><input type="text" placeholder="Describe existing equipment..."></div>
-    <div class="check-row"><div class="check-label">Vehicle Condition On Arrival</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'fleet-cond')">Good</button><button class="cbtn bad" onclick="cbn(this,'fleet-cond')">Issues – Note</button></div></div>
+    <div class="check-row"><div class="check-label">Vehicle Condition On Arrival</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;fleet-cond&#39;)">Good</button><button class="cbtn bad" onclick="cbn(this,&#39;fleet-cond&#39;)">Issues – Note</button></div></div>
     <div class="note-wrap" id="fleet-cond-note"><input type="text" placeholder="Describe pre-existing conditions..."></div>
     <div class="co-ext" id="co-fleet">
       <div class="div"></div><div class="co-head">✔ Check-Out — Fleet</div>
@@ -639,12 +639,12 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
     <div class="check-row"><div class="check-label">Product In-Hand / Received</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No – On Order</button></div></div>
     <div class="check-row"><div class="check-label">Mounting Location Confirmed</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn na" onclick="cb(this)">TBD</button></div></div>
     <div class="check-row"><div class="check-label">Wiring / Power Required?</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">No</button></div></div>
-    <div class="check-row"><div class="check-label">Install Area Condition Pre-Install</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'acc-cond')">Good</button><button class="cbtn bad" onclick="cbn(this,'acc-cond')">Issue – Note</button></div></div>
+    <div class="check-row"><div class="check-label">Install Area Condition Pre-Install</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;acc-cond&#39;)">Good</button><button class="cbtn bad" onclick="cbn(this,&#39;acc-cond&#39;)">Issue – Note</button></div></div>
     <div class="note-wrap" id="acc-cond-note"><input type="text" placeholder="Describe pre-existing condition..."></div>
     <div class="field" style="margin-top:10px;"><label>Additional Notes</label><textarea placeholder="Any other notes relevant to this install..."></textarea></div>
     <div class="co-ext" id="co-acc">
       <div class="div"></div><div class="co-head">✔ Check-Out — Accessories</div>
-      <div class="check-row"><div class="check-label">Product Installed &amp; Functioning</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,'acc-func')">Yes</button><button class="cbtn bad" onclick="cbn(this,'acc-func')">Issue</button></div></div>
+      <div class="check-row"><div class="check-label">Product Installed &amp; Functioning</div><div class="check-btns"><button class="cbtn ok" onclick="cbn(this,&#39;acc-func&#39;)">Yes</button><button class="cbtn bad" onclick="cbn(this,&#39;acc-func&#39;)">Issue</button></div></div>
       <div class="note-wrap" id="acc-func-note"><input type="text" placeholder="Describe issue..."></div>
       <div class="check-row"><div class="check-label">Wiring Concealed &amp; Tidy</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">Needs Work</button><button class="cbtn na" onclick="cb(this)">N/A</button></div></div>
       <div class="check-row"><div class="check-label">Area Cleaned &amp; Restored</div><div class="check-btns"><button class="cbtn ok" onclick="cb(this)">Yes</button><button class="cbtn bad" onclick="cb(this)">Attention Needed</button></div></div>
@@ -701,7 +701,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#edecea;color:var(-
   <button class="btn-red" onclick="window.print()">Save / Print PDF</button>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="./index_files/email-decode.min.js.download"></script><script>
 const RECIPIENTS = "austenf@theaudiogarage.com,cpaulson@theaudiogarage.com";
 
 // ── Init date/time ──
@@ -1023,3 +1023,4 @@ function clearForm() {
   removeVinPhoto();
   const n2=new Date();
   document.
+</script></body></html>
